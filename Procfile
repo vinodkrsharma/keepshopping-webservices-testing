@@ -1,1 +1,1 @@
-web: java -cp target/classes:target/* com.keepshopping.heroku.Main
+web: java -cp target/classes:target/dependency/* com.keepshopping.heroku.Main
