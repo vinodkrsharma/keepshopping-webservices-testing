@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
-Test set: com.example.MyResourceTest
+Test set: com.keepshopping.MyResourceTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.984 sec <<< FAILURE!
-testGetIt(com.example.MyResourceTest)  Time elapsed: 0.845 sec  <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.882 sec <<< FAILURE!
+testGetIt(com.keepshopping.MyResourceTest)  Time elapsed: 0.765 sec  <<< ERROR!
 javax.ws.rs.NotFoundException: HTTP 404 Not Found
 	at org.glassfish.jersey.client.JerseyInvocation.convertToException(JerseyInvocation.java:1008)
 	at org.glassfish.jersey.client.JerseyInvocation.translate(JerseyInvocation.java:816)
@@ -15,7 +15,7 @@ javax.ws.rs.NotFoundException: HTTP 404 Not Found
 	at org.glassfish.jersey.client.JerseyInvocation.invoke(JerseyInvocation.java:696)
 	at org.glassfish.jersey.client.JerseyInvocation$Builder.method(JerseyInvocation.java:420)
 	at org.glassfish.jersey.client.JerseyInvocation$Builder.get(JerseyInvocation.java:316)
-	at com.example.MyResourceTest.testGetIt(MyResourceTest.java:25)
+	at com.keepshopping.MyResourceTest.testGetIt(MyResourceTest.java:25)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
