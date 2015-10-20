@@ -1,4 +1,4 @@
-package com.example;
+package com.keepshopping;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

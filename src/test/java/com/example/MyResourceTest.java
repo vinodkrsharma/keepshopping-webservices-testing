@@ -4,11 +4,11 @@ import javax.ws.rs.core.Application;
 
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
-
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
-import com.example.MyResource;
+import com.keepshopping.MyResource;
 
 public class MyResourceTest extends JerseyTest {
 
