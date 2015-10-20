@@ -7,7 +7,7 @@
 	<artifactId>simple-heroku-webapp</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>simple-heroku-webapp</name>
+	<name>keepshopping-webservices-testing</name>
 
 	<dependencyManagement>
 		<dependencies>

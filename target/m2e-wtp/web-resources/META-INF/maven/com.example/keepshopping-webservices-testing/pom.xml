@@ -3,7 +3,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.keepshopping</groupId>
+	<groupId>com.example</groupId>
 	<artifactId>keepshopping-webservices-testing</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
