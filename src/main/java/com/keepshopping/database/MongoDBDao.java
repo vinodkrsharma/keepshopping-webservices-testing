@@ -41,12 +41,12 @@ public class MongoDBDao implements DataAccessObject{
 		
 		
 		for(DBObject dbObject:dbObjects){
-		//	item.setItemId((String)dbObject.get("_id"));
 			Item item=new Item();
+			item.setItemId((String)dbObject.get("itemId"));
 			item.setItemName((String)dbObject.get("itemName"));
-			item.setPrice((Double)dbObject.get("price"));
-			item.setQuantity((double)dbObject.get("quantity"));
-			item.setQuantityLeft((double)dbObject.get("quantityLeft"));
+			item.setItemPrice((Double)dbObject.get("itemPrice"));
+			item.setItemQuantity((String)dbObject.get("itemQuantity"));
+			item.setItemQuantityLeft((String)dbObject.get("itemQuantityLeft"));
 			//System.out.println(item.toString());
 			items.add(item);
 		}

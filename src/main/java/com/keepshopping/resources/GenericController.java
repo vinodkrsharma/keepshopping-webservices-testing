@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 import com.keepshopping.model.Item;
 import com.keepshopping.service.KeepShoppingService;
 
-@Path("name")
+@Path("kscontrl")
 public class GenericController {
 
 	 private ArrayList<Item> items;
