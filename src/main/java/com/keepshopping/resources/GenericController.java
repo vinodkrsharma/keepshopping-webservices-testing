@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 import com.keepshopping.model.Item;
 import com.keepshopping.service.KeepShoppingService;
 
-@Path("{collectionName}")
+@Path("name")
 public class GenericController {
 
 	 private ArrayList<Item> items;
@@ -23,8 +23,10 @@ public class GenericController {
 	    }
 	    
 	    @GET
+	    @Path("{collectionName}")
 	    @Produces(MediaType.APPLICATION_XML)
 	    public List<Item> getIt(@PathParam("collectionName") String collectionName) {
+	    	System.out.println("In generic controller");
 	        List<Item> items=new ArrayList<Item>();
 	        items=keepShoppingService.fetchAllDocuments(collectionName);
 	        return items;
