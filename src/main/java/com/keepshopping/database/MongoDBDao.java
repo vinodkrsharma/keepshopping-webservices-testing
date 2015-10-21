@@ -1,24 +1,57 @@
 package com.keepshopping.database;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.keepshopping.model.Item;
-import com.mongodb.Mongo;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 
-public class MongoDBDao implements DataAccessObject {
+public class MongoDBDao implements DataAccessObject{
 
-	private MongoDBDao mongoDbObj;
-//	private String collectionName;
-	private MongoDBDao_1 mongoDBConnection;
+	private static MongoDBDao mongoDBDao;
+	private DB db;
+	private String databasename;
+	private  DBCollection collection;
+	private String databaseURI;
 	
-	private MongoDBDao() {
-		
+	private MongoDBDao(String databasename){
+		databaseURI="mongodb://vinod:vinod121@ds039484.mongolab.com:39484/"+databasename;
+		MongoClientURI uri  = new MongoClientURI(databaseURI); 
+        MongoClient client = new MongoClient(uri);
+        db = client.getDB(uri.getDatabase());
 	}
 	
-	@Override
-	public List<Item> fetchAllDocuments(String collectionName) {
-		// TODO Auto-generated method stub
-		return null;
+	public static MongoDBDao getmongoDBDao(String databasename){
+		if(mongoDBDao==null){
+			mongoDBDao=new MongoDBDao(databasename);
+		}
+		return mongoDBDao;
+	}
+
+	public List<Item> fetchAllDocuments(String collectionName){
+		setCollection(collectionName);
+		DBCursor cursor = collection.find();
+		List<DBObject> dbObjects=cursor.toArray();
+		List<Item> items=new ArrayList<Item>();
+		
+		
+		for(DBObject dbObject:dbObjects){
+		//	item.setItemId((String)dbObject.get("_id"));
+			Item item=new Item();
+			item.setItemName((String)dbObject.get("itemName"));
+			item.setPrice((Double)dbObject.get("price"));
+			item.setQuantity((double)dbObject.get("quantity"));
+			item.setQuantityLeft((double)dbObject.get("quantityLeft"));
+			//System.out.println(item.toString());
+			items.add(item);
+		}
+		
+		return items;
 	}
 
 	@Override
@@ -32,5 +65,26 @@ public class MongoDBDao implements DataAccessObject {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 
+	public DB getDb() {
+		return db;
+	}
+
+	public void setDb(DB db) {
+		this.db = db;
+	}
+
+	public DBCollection getCollection() {
+		return collection;
+	}
+
+	public void setCollection(String collection) {
+		this.collection = db.getCollection(collection);
+	}
+	
+	public void setCollection(DBCollection collection) {
+		this.collection = collection;
+	}
+	
 }
