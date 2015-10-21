@@ -11,22 +11,22 @@ import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 
-public class MongoDBConnection {
+public class MongoDBDao_1 implements DataAccessObject{
 
-	private static MongoDBConnection mongoDBConnection;
+	private static MongoDBDao_1 mongoDBConnection;
 	private DB db;
 	private String databasename;
 	private  DBCollection collection;
 	
-	private MongoDBConnection(String databasename){
+	private MongoDBDao_1(String databasename){
 		MongoClientURI uri  = new MongoClientURI("mongodb://vinod:vinod121@ds039484.mongolab.com:39484/keepshopping"); 
         MongoClient client = new MongoClient(uri);
         db = client.getDB(uri.getDatabase());
 	}
 	
-	public static MongoDBConnection getMongoDBConnection(String databasename){
+	public static MongoDBDao_1 getMongoDBConnection(String databasename){
 		if(mongoDBConnection==null){
-			mongoDBConnection=new MongoDBConnection(databasename);
+			mongoDBConnection=new MongoDBDao_1(databasename);
 		}
 		return mongoDBConnection;
 	}
@@ -51,7 +51,8 @@ public class MongoDBConnection {
 		this.collection = collection;
 	}
 	
-	public List<Item> getAllDocuments(){
+	public List<Item> fetchAllDocuments(String collectionName){
+		setCollection(collectionName);
 		DBCursor cursor = collection.find();
 		List<DBObject> dbObjects=cursor.toArray();
 		List<Item> items=new ArrayList<Item>();
@@ -68,8 +69,18 @@ public class MongoDBConnection {
 			items.add(item);
 		}
 		
-		
-		
 		return items;
+	}
+
+	@Override
+	public Item fetchDocumentbyId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Item fetchDocumentbyName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
