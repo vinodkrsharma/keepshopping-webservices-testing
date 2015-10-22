@@ -17,13 +17,17 @@ public class MongoDBDao implements DataAccessObject{
 	private DB db;
 	private String databasename;
 	private  DBCollection collection;
-	private String databaseURI;
+	private String mongoLabDatabaseURI;
+	private String mongoLocalDatabaseURI;
 	
 	private MongoDBDao(String databasename){
-		databaseURI="mongodb://vinod:vinod121@ds039484.mongolab.com:39484/"+databasename;
-		MongoClientURI uri  = new MongoClientURI(databaseURI); 
-        MongoClient client = new MongoClient(uri);
-        db = client.getDB(uri.getDatabase());
+	//	mongoLabDatabaseURI="mongodb://vinod:vinod121@ds039484.mongolab.com:39484/"+databasename;
+		mongoLocalDatabaseURI="localhost:27017/"+databasename;
+	//	MongoClientURI uri  = new MongoClientURI(mongoLocalDatabaseURI);
+		MongoClient client  = new MongoClient("localhost",27017);
+  //      MongoClient client = new MongoClient(uri);
+    //    db = client.getDB(uri.getDatabase());
+        db=client.getDB(databasename);
 	}
 	
 	public static MongoDBDao getmongoDBDao(String databasename){
@@ -68,7 +72,12 @@ public class MongoDBDao implements DataAccessObject{
 		return null;
 	}
 	
-
+	@Override
+	public void insertCollection(Item item) {
+		
+	}
+	
+	
 	public DB getDb() {
 		return db;
 	}
@@ -88,5 +97,6 @@ public class MongoDBDao implements DataAccessObject{
 	public void setCollection(DBCollection collection) {
 		this.collection = collection;
 	}
+
 	
 }

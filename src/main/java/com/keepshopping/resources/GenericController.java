@@ -3,7 +3,9 @@ package com.keepshopping.resources;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -30,5 +32,12 @@ public class GenericController {
 	        List<Item> items=new ArrayList<Item>();
 	        items=keepShoppingService.fetchAllDocuments(collectionName);
 	        return items;
+	    }
+	    
+	    @POST
+	    @Consumes(MediaType.APPLICATION_JSON)
+	    public void insertCollection(Item item){
+	    	
+	    	System.out.println(item.toString());
 	    }
 }
