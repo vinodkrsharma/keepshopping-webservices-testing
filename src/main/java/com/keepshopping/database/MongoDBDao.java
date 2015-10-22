@@ -18,7 +18,7 @@ public class MongoDBDao implements DataAccessObject{
 	private String databasename;
 	private  DBCollection collection;
 	private String databaseURI;
-	
+	//private int i=0;
 	private MongoDBDao(String databasename){
 		databaseURI="mongodb://vinod:vinod121@ds039484.mongolab.com:39484/"+databasename;
 		MongoClientURI uri  = new MongoClientURI(databaseURI); 
@@ -41,13 +41,17 @@ public class MongoDBDao implements DataAccessObject{
 		
 		
 		for(DBObject dbObject:dbObjects){
+			//System.out.println(++i);
 			Item item=new Item();
 			item.setItemId((String)dbObject.get("itemId"));
 			item.setItemName((String)dbObject.get("itemName"));
-			item.setItemPrice((Double)dbObject.get("itemPrice"));
+			
+			//int price=(Integer)dbObject.get("itemPrice");
+			item.setItemPrice(((Integer)dbObject.get("itemPrice")).intValue());
 			item.setItemQuantity((String)dbObject.get("itemQuantity"));
 			item.setItemQuantityLeft((String)dbObject.get("itemQuantityLeft"));
-			//System.out.println(item.toString());
+			item.setItemType((String)dbObject.get("itemType"));
+			System.out.println(item.toString());
 			items.add(item);
 		}
 		
