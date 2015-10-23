@@ -20,7 +20,7 @@ public class KeepShoppingService {
 		return items;
 	}
 	
-	public void insertCollection(Item item){
-		dao.insertCollection(item);
+	public void insertCollection(String collectionName,Item item){
+		dao.insertCollection(collectionName,item);
 	}
 }

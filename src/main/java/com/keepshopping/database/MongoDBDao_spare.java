@@ -33,4 +33,10 @@ public class MongoDBDao_spare implements DataAccessObject {
 		return null;
 	}
 
+	@Override
+	public void insertCollection(String collectionName,Item item) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

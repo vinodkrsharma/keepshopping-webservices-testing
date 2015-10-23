@@ -76,4 +76,16 @@ public class Item{
 	public String toString(){
 		return this.itemName+" "+this.itemPrice+" "+" "+this.itemQuantity+" "+this.itemQuantityLeft+" "+this.itemType;
 	}
+
+
+	public String toJson() {
+		String itemJson="{\'itemId\' : \'"+this.itemId+"\',"
+				+"\'itemName\' : \'"+this.itemName+"\',"
+				+"\'itemPrice\' : "+this.itemPrice+","
+				+"\'itemQuantity\' : \'"+this.itemQuantity+"\',"
+				+"\'itemQuantityLeft\' : \'"+this.itemQuantityLeft+"\',"
+				+"\'itemType\' : \'"+this.itemType+"\'}";
+		
+		return itemJson;
+	}
 }

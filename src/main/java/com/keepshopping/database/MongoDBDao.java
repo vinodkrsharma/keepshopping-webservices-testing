@@ -10,6 +10,7 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.mongodb.util.JSON;
 
 public class MongoDBDao implements DataAccessObject{
 
@@ -20,14 +21,15 @@ public class MongoDBDao implements DataAccessObject{
 	private String mongoLabDatabaseURI;
 	private String mongoLocalDatabaseURI;
 	
+	@SuppressWarnings("deprecation")
 	private MongoDBDao(String databasename){
-	//	mongoLabDatabaseURI="mongodb://vinod:vinod121@ds039484.mongolab.com:39484/"+databasename;
-		mongoLocalDatabaseURI="localhost:27017/"+databasename;
-	//	MongoClientURI uri  = new MongoClientURI(mongoLocalDatabaseURI);
-		MongoClient client  = new MongoClient("localhost",27017);
-  //      MongoClient client = new MongoClient(uri);
-    //    db = client.getDB(uri.getDatabase());
-        db=client.getDB(databasename);
+		mongoLabDatabaseURI="mongodb://vinod:vinod121@ds039484.mongolab.com:39484/"+databasename;
+	//	mongoLocalDatabaseURI="localhost:27017/"+databasename;
+		MongoClientURI uri  = new MongoClientURI(mongoLabDatabaseURI);
+    //	MongoClient client  = new MongoClient("localhost",27017);
+        MongoClient client = new MongoClient(uri);
+        db = client.getDB(uri.getDatabase());
+    //    db=client.getDB(databasename);
 	}
 	
 	public static MongoDBDao getmongoDBDao(String databasename){
@@ -73,8 +75,10 @@ public class MongoDBDao implements DataAccessObject{
 	}
 	
 	@Override
-	public void insertCollection(Item item) {
-		
+	public void insertCollection(String collectionName,Item item) {
+		setCollection(collectionName);
+		DBObject dbObject = (DBObject) JSON.parse(item.toJson());
+		collection.insert(dbObject);
 	}
 	
 	
