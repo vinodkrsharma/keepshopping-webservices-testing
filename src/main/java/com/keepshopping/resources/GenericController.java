@@ -11,8 +11,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.google.gson.GsonBuilder;
 import com.keepshopping.model.Item;
 import com.keepshopping.service.KeepShoppingService;
+import com.mongodb.util.JSON;
 
 @Path("kscontrl")
 public class GenericController {
@@ -39,7 +41,14 @@ public class GenericController {
 	    @Consumes(MediaType.APPLICATION_JSON)
 	    public void insertCollection(@PathParam("collectionName") String collectionName,Item item){
 	    	System.out.println(item.toJson());
+	    	System.out.println(new GsonBuilder().setPrettyPrinting().serializeNulls().create().toJson(item));
 	    	keepShoppingService.insertCollection(collectionName,item);
-	    	
+	    }
+	    
+	    @POST
+	    @Path("{collectionName}/{itemId}")
+	    @Consumes(MediaType.APPLICATION_JSON)
+	    public void fetchDocumentbyId(@PathParam("collectionName") String collectionName,Item item){
+	    		    	
 	    }
 }
