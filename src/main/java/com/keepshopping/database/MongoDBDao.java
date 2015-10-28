@@ -12,6 +12,7 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import com.mongodb.util.JSON;
 
 public class MongoDBDao implements DataAccessObject{
@@ -23,15 +24,16 @@ public class MongoDBDao implements DataAccessObject{
 	private String mongoLabDatabaseURI;
 	private String mongoLocalDatabaseURI;
 	private Gson gson=new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+	
 	@SuppressWarnings("deprecation")
 	private MongoDBDao(String databasename){
-	//	mongoLabDatabaseURI="mongodb://vinod:vinod121@ds039484.mongolab.com:39484/"+databasename;
-	//	mongoLocalDatabaseURI="localhost:27017/"+databasename;
-	//	MongoClientURI uri  = new MongoClientURI(mongoLabDatabaseURI);
-//    	MongoClient client = new MongoClient(uri);
-//        db = client.getDB(uri.getDatabase());
-    	MongoClient client  = new MongoClient("localhost",27017);
-        db=client.getDB(databasename);
+		mongoLabDatabaseURI="mongodb://vinod:vinod121@ds039484.mongolab.com:39484/"+databasename;
+//		mongoLocalDatabaseURI="localhost:27017/"+databasename;
+		MongoClientURI uri  = new MongoClientURI(mongoLabDatabaseURI);
+    	MongoClient client = new MongoClient(uri);
+        db = client.getDB(uri.getDatabase());
+//    	MongoClient client  = new MongoClient("localhost",27017);
+//        db=client.getDB(databasename);
 	}
 	
 	public static MongoDBDao getmongoDBDao(String databasename){
@@ -84,6 +86,8 @@ public class MongoDBDao implements DataAccessObject{
 		setCollection(collectionName);
 		DBObject dbObject = (DBObject) JSON.parse(gson.toJson(item));
 		collection.insert(dbObject);
+		
+		System.out.println(db.getCollectionNames());
 	}
 	
 	

@@ -29,7 +29,17 @@ public class GenericController {
 	    @GET
 	    @Path("{collectionName}")
 	    @Produces(MediaType.APPLICATION_XML)
-	    public List<Item> getIt(@PathParam("collectionName") String collectionName) {
+	    public List<Item> getCollectionData_XML(@PathParam("collectionName") String collectionName) {
+//	    	System.out.println("In generic controller");
+	        List<Item> items=new ArrayList<Item>();
+	        items=keepShoppingService.fetchAllDocuments(collectionName);
+	        return items;
+	    }
+	    
+	    @GET
+	    @Path("{collectionName}")
+	    @Produces(MediaType.APPLICATION_XML)
+	    public List<Item> getCollectionData_JSON(@PathParam("collectionName") String collectionName) {
 //	    	System.out.println("In generic controller");
 	        List<Item> items=new ArrayList<Item>();
 	        items=keepShoppingService.fetchAllDocuments(collectionName);
