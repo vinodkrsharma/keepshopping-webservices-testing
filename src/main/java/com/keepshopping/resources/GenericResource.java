@@ -17,12 +17,12 @@ import com.keepshopping.service.KeepShoppingService;
 import com.mongodb.util.JSON;
 
 @Path("kscontrl")
-public class GenericController {
+public class GenericResource {
 
 	 private ArrayList<Item> items;
 	    private KeepShoppingService keepShoppingService;
 	    
-	    public GenericController(){
+	    public GenericResource(){
 	    	keepShoppingService=new KeepShoppingService("keepshopping");
 	    }
 	    
@@ -37,8 +37,8 @@ public class GenericController {
 	    }
 	    
 	    @GET
-	    @Path("{collectionName}")
-	    @Produces(MediaType.APPLICATION_XML)
+	    @Path("{collectionName}/json")
+	    @Produces(MediaType.APPLICATION_JSON)
 	    public List<Item> getCollectionData_JSON(@PathParam("collectionName") String collectionName) {
 //	    	System.out.println("In generic controller");
 	        List<Item> items=new ArrayList<Item>();

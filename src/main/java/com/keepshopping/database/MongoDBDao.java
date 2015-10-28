@@ -31,9 +31,9 @@ public class MongoDBDao implements DataAccessObject{
 //		mongoLocalDatabaseURI="localhost:27017/"+databasename;
 		MongoClientURI uri  = new MongoClientURI(mongoLabDatabaseURI);
     	MongoClient client = new MongoClient(uri);
-        db = client.getDB(uri.getDatabase());
+//        db = client.getDB(uri.getDatabase());
 //    	MongoClient client  = new MongoClient("localhost",27017);
-//        db=client.getDB(databasename);
+        db=client.getDB(databasename);
 	}
 	
 	public static MongoDBDao getmongoDBDao(String databasename){
