@@ -58,7 +58,9 @@ public class GenericResource {
 	    @POST
 	    @Path("{collectionName}/{itemId}")
 	    @Consumes(MediaType.APPLICATION_JSON)
-	    public void fetchDocumentbyId(@PathParam("collectionName") String collectionName,Item item){
-	    		    	
+	    public Item fetchDocumentbyId(@PathParam("collectionName") String collectionName,@PathParam("itemId") String itemId){
+	    	Item item=new Item();
+	    	
+	    	return item;
 	    }
 }
